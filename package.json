@@ -6,10 +6,12 @@
   "contributors": [
     "Denis Carriere <@DenisCarriere>"
   ],
-  "module": "src/jsts",
-  "jsnext:main": "src/jsts",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "scripts": {
-    "test": "rollup src/jsts.js -f cjs "
+    "pretest": "rollup index.js -f cjs -o main.js",
+    "test": "node test.js"
   },
   "keywords": [
     "JSTS",
@@ -21,6 +23,7 @@
   ],
   "license": "(EDL-1.0 OR EPL-1.0)",
   "devDependencies": {
-    "rollup": "*"
+    "rollup": "*",
+    "tape": "*"
   }
 }

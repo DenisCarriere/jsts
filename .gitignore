@@ -1,4 +1,2 @@
-*.ast
+main.js
 node_modules
-dist
-doc/jsts.js
