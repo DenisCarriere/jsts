@@ -1,7 +1,7 @@
 {
   "name": "jsts-es",
   "description": "A JavaScript library of spatial predicates and functions for processing geometry",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "author": "Björn Harrtell <bjorn@wololo.org>",
   "contributors": [
     "Denis Carriere <@DenisCarriere>"
@@ -9,6 +9,11 @@
   "main": "main",
   "module": "index",
   "jsnext:main": "index",
+  "files": [
+    "index.js",
+    "main.js",
+    "src"
+  ],
   "scripts": {
     "pretest": "rollup index.js -f cjs -o main.js",
     "test": "node test.js"
