@@ -16,11 +16,7 @@ import * as simplify from './org/locationtech/jts/simplify'
 import * as triangulate from './org/locationtech/jts/triangulate'
 import * as linearref from './org/locationtech/jts/linearref'
 
-import './org/locationtech/jts/monkey'
-
-const version = 'npm_package_version (git_hash)'
 export {
-  version,
   algorithm,
   densify,
   dissolve,
