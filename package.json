@@ -15,7 +15,7 @@
     "src"
   ],
   "scripts": {
-    "publish": "rollup -c",
+    "prepublish": "rollup -c",
     "test": "node test.js"
   },
   "keywords": [
