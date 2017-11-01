@@ -1,7 +1,7 @@
 {
   "name": "jsts-es",
   "description": "A JavaScript library of spatial predicates and functions for processing geometry",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "author": "Björn Harrtell <bjorn@wololo.org>",
   "contributors": [
     "Denis Carriere <@DenisCarriere>"
@@ -15,7 +15,7 @@
     "src"
   ],
   "scripts": {
-    "pretest": "rollup index.js -f cjs -o main.js",
+    "publish": "rollup -c",
     "test": "node test.js"
   },
   "keywords": [
@@ -28,7 +28,13 @@
   ],
   "license": "(EDL-1.0 OR EPL-1.0)",
   "devDependencies": {
+    "babel-cli": "*",
+    "babel-core": "*",
+    "babel-plugin-external-helpers": "*",
+    "babel-preset-env": "*",
+    "babel-preset-es2015": "*",
     "rollup": "*",
+    "rollup-plugin-babel": "*",
     "tape": "*"
   }
 }
