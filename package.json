@@ -28,11 +28,9 @@
   ],
   "license": "(EDL-1.0 OR EPL-1.0)",
   "devDependencies": {
-    "babel-cli": "*",
     "babel-core": "*",
     "babel-plugin-external-helpers": "*",
     "babel-preset-env": "*",
-    "babel-preset-es2015": "*",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "tape": "*"
