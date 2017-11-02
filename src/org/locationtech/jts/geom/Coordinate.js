@@ -7,6 +7,7 @@ import Cloneable from '../../../../java/lang/Cloneable';
 import Comparator from '../../../../java/util/Comparator';
 import Serializable from '../../../../java/io/Serializable';
 import Assert from '../util/Assert';
+
 export default function Coordinate() {
 	this.x = null;
 	this.y = null;

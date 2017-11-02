@@ -33,6 +33,7 @@
     "babel-preset-env": "*",
     "rollup": "*",
     "rollup-plugin-babel": "*",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "tape": "*"
   }
 }
