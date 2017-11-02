@@ -1,13 +1,11 @@
-import extend from '../../../../extend';
-export default function NumberUtil() {}
-extend(NumberUtil.prototype, {
-	interfaces_: function () {
+export default class NumberUtil {
+	interfaces_() {
 		return [];
-	},
-	getClass: function () {
+	}
+	getClass() {
 		return NumberUtil;
 	}
-});
-NumberUtil.equalsWithTolerance = function (x1, x2, tolerance) {
-	return Math.abs(x1 - x2) <= tolerance;
+	equalsWithTolerance(x1, x2, tolerance) {
+		return Math.abs(x1 - x2) <= tolerance;
+	}
 };
