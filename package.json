@@ -15,8 +15,8 @@
     "src"
   ],
   "scripts": {
-    "pretest": "rollup -c",
-    "test": "node test.js"
+    "build": "rollup -c",
+    "test": "node -r @std/esm test.js"
   },
   "keywords": [
     "JSTS",
@@ -28,6 +28,7 @@
   ],
   "license": "(EDL-1.0 OR EPL-1.0)",
   "devDependencies": {
+    "@std/esm": "^0.12.5",
     "babel-core": "*",
     "babel-plugin-external-helpers": "*",
     "babel-preset-env": "*",
@@ -36,5 +37,8 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "standard": "*",
     "tape": "*"
+  },
+  "@std/esm": {
+    "esm": "js"
   }
 }

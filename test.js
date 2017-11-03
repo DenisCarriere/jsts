@@ -1,6 +1,6 @@
-const test = require('tape')
-const jsts = require('./')
-const { GeoJSONReader, GeoJSONWriter, BufferOp } = require('./')
+import test from 'tape'
+import * as jsts from '.'
+import { GeoJSONReader, GeoJSONWriter, BufferOp } from './'
 
 test('jsts -- Entry points', t => {
   t.assert(jsts.GeoJSONWriter)
