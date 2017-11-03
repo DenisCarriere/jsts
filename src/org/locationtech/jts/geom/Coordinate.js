@@ -1,14 +1,15 @@
-import Assert from '../util/Assert'
+// 2nd Pass
 import NumberUtil from '../util/NumberUtil'
+import IllegalArgumentException from '../../../../java/lang/IllegalArgumentException'
 import Double from '../../../../java/lang/Double'
 import Comparable from '../../../../java/lang/Comparable'
 import Cloneable from '../../../../java/lang/Cloneable'
 import Comparator from '../../../../java/util/Comparator'
 import Serializable from '../../../../java/io/Serializable'
-import IllegalArgumentException from '../../../../java/lang/IllegalArgumentException'
+import Assert from '../util/Assert'
 
 export default class Coordinate {
-  constructor () {
+  constructor (x, y, z) {
     this.DimensionalComparator = DimensionalComparator
     this.serialVersionUID = 6683108902428366910
     this.NULL_ORDINATE = Double.NaN
@@ -18,22 +19,23 @@ export default class Coordinate {
     this.x = null
     this.y = null
     this.z = null
-    if (arguments.length === 0) {
-      this.x = 0.0
-      this.y = 0.0
-    } else if (arguments.length === 1) {
-      let c = arguments[0]
+    if (z) {
+      this.x = x
+      this.y = y
+      this.z = z
+    } else if (y) {
+      this.x = x
+      this.y = y
+      this.z = this.NULL_ORDINATE
+    } else if (x) {
+      const c = x
       this.x = c.x
       this.y = c.y
       this.z = c.z
-    } else if (arguments.length === 2) {
-      this.x = arguments[0]
-      this.y = arguments[1]
+    } else {
+      this.x = 0.0
+      this.y = 0.0
       this.z = this.NULL_ORDINATE
-    } else if (arguments.length === 3) {
-      this.x = arguments[0]
-      this.y = arguments[1]
-      this.z = arguments[2]
     }
   }
   setOrdinate (ordinateIndex, value) {
@@ -51,26 +53,20 @@ export default class Coordinate {
         throw new IllegalArgumentException('Invalid ordinate index: ' + ordinateIndex)
     }
   }
-  equals2D () {
-    let other
-    let c
-    let tolerance
-    if (arguments.length === 1) {
-      other = arguments[0]
-      if (this.x !== other.x) {
-        return false
-      }
-      if (this.y !== other.y) {
-        return false
-      }
-      return true
-    } else if (arguments.length === 2) {
-      c = arguments[0]
-      tolerance = arguments[1]
+  equals2D (c, tolerance) {
+    if (typeof tolerance !== 'undefined') {
       if (!NumberUtil.equalsWithTolerance(this.x, c.x, tolerance)) {
         return false
       }
       if (!NumberUtil.equalsWithTolerance(this.y, c.y, tolerance)) {
+        return false
+      }
+      return true
+    } else {
+      if (this.x !== c.x) {
+        return false
+      }
+      if (this.y !== c.y) {
         return false
       }
       return true
@@ -122,7 +118,7 @@ export default class Coordinate {
     return new Coordinate(this)
   }
   toString () {
-    return `(${this.x}, ${this.y}, ${this.z})`
+    return '(' + this.x + ', ' + this.y + ', ' + this.z + ')'
   }
   distance3D (c) {
     var dx = this.x - c.x
@@ -136,11 +132,6 @@ export default class Coordinate {
     return Math.sqrt(dx * dx + dy * dy)
   }
   hashCode () {
-    if (arguments.length === 1) {
-      let x = arguments[0]
-      var f = Double.doubleToLongBits(x)
-      return Math.trunc(f ^ f >>> 32)
-    }
     var result = 17
     result = 37 * result + Coordinate.hashCode(this.x)
     result = 37 * result + Coordinate.hashCode(this.y)
@@ -157,37 +148,38 @@ export default class Coordinate {
   getClass () {
     return Coordinate
   }
+  static hashCode (x) {
+    const f = Double.doubleToLongBits(x)
+    return Math.trunc(f ^ f >>> 32)
+  }
 }
 
 class DimensionalComparator {
-  constructor () {
+  constructor (dimensionsToTest) {
     this._dimensionsToTest = 2
-    if (arguments.length === 0) {
-      this._dimensionsToTest = 2
-    } else if (arguments.length === 1) {
-      let dimensionsToTest = arguments[0]
-      if (dimensionsToTest !== 2 && dimensionsToTest !== 3) throw IllegalArgumentException('only 2 or 3 dimensions may be specified')
+    if (dimensionsToTest) {
+      if (dimensionsToTest !== 2 && dimensionsToTest !== 3) throw new IllegalArgumentException('only 2 or 3 dimensions may be specified')
       this._dimensionsToTest = dimensionsToTest
     }
   }
-  // compare (o1, o2) {
-  //   var c1 = o1
-  //   var c2 = o2
-  //   var compX = DimensionalComparator.compare(c1.x, c2.x)
-  //   if (compX !== 0) return compX
-  //   var compY = DimensionalComparator.compare(c1.y, c2.y)
-  //   if (compY !== 0) return compY
-  //   if (this._dimensionsToTest <= 2) return 0
-  //   var compZ = DimensionalComparator.compare(c1.z, c2.z)
-  //   return compZ
-  // }
+  compare (o1, o2) {
+    var c1 = o1
+    var c2 = o2
+    var compX = DimensionalComparator.compare(c1.x, c2.x)
+    if (compX !== 0) return compX
+    var compY = DimensionalComparator.compare(c1.y, c2.y)
+    if (compY !== 0) return compY
+    if (this._dimensionsToTest <= 2) return 0
+    var compZ = DimensionalComparator.compare(c1.z, c2.z)
+    return compZ
+  }
   interfaces_ () {
     return [Comparator]
   }
   getClass () {
     return DimensionalComparator
   }
-  compare (a, b) {
+  static compare (a, b) {
     if (a < b) return -1
     if (a > b) return 1
     if (Double.isNaN(a)) {
@@ -196,5 +188,5 @@ class DimensionalComparator {
     }
     if (Double.isNaN(b)) return 1
     return 0
-  };
+  }
 }

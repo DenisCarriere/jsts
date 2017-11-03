@@ -1,33 +1,34 @@
-import extend from '../../../../extend';
-import Cloneable from '../../../../java/lang/Cloneable';
-export default function CoordinateSequence() {}
-extend(CoordinateSequence.prototype, {
-	setOrdinate: function (index, ordinateIndex, value) {},
-	size: function () {},
-	getOrdinate: function (index, ordinateIndex) {},
-	getCoordinate: function () {
-		if (arguments.length === 1) {
-			let i = arguments[0];
-		} else if (arguments.length === 2) {
-			let index = arguments[0], coord = arguments[1];
-		}
-	},
-	getCoordinateCopy: function (i) {},
-	getDimension: function () {},
-	getX: function (index) {},
-	clone: function () {},
-	expandEnvelope: function (env) {},
-	copy: function () {},
-	getY: function (index) {},
-	toCoordinateArray: function () {},
-	interfaces_: function () {
-		return [Cloneable];
-	},
-	getClass: function () {
-		return CoordinateSequence;
-	}
-});
-CoordinateSequence.X = 0;
-CoordinateSequence.Y = 1;
-CoordinateSequence.Z = 2;
-CoordinateSequence.M = 3;
+// 2nd pass
+import Cloneable from '../../../../java/lang/Cloneable'
+
+export default class CoordinateSequence {
+  constructor () {
+    this.X = 0
+    this.Y = 1
+    this.Z = 2
+    this.M = 3
+  }
+  setOrdinate (index, ordinateIndex, value) {}
+
+  size () {}
+  getOrdinate (index, ordinateIndex) {}
+
+  getCoordinate (index, coord) {
+    this.index = index
+    this.coord = coord
+  }
+  getCoordinateCopy (i) {}
+  getDimension () {}
+  getX (index) {}
+  clone () {}
+  expandEnvelope (env) {}
+  copy () {}
+  getY (index) {}
+  toCoordinateArray () {}
+  interfaces_ () {
+    return [Cloneable]
+  }
+  getClass () {
+    return CoordinateSequence
+  }
+}
