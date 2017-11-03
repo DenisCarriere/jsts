@@ -16,12 +16,12 @@ import GeoJSONParser from './GeoJSONParser'
  * @constructor
  */
 export default class GeoJSONReader {
-  constructor(geometryFactory) {
+  constructor (geometryFactory) {
     this.geometryFactory = geometryFactory || new GeometryFactory()
     this.precisionModel = this.geometryFactory.getPrecisionModel()
     this.parser = new GeoJSONParser(this.geometryFactory)
   }
-  /**
+  /**w
    * Reads a GeoJSON representation of a {@link Geometry}
    *
    * Will also parse GeoJSON Features/FeatureCollections as custom objects.

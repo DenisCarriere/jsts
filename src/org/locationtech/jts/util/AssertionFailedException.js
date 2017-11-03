@@ -1,18 +1,19 @@
-import RuntimeException from '../../../../java/lang/RuntimeException';
+import RuntimeException from '../../../../java/lang/RuntimeException'
 
 export default class AssertionFailedException extends RuntimeException {
-	constructor() {
-		if (arguments.length === 0) {
-			RuntimeException.call(this);
-		} else if (arguments.length === 1) {
-			let message = arguments[0];
-			RuntimeException.call(this, message);
-		}
-	}
-	static interfaces_() {
-		return [];
-	}
-	static getClass() {
-		return AssertionFailedException;
-	}
+  constructor () {
+    super()
+    if (arguments.length === 0) {
+      RuntimeException.call(this)
+    } else if (arguments.length === 1) {
+      let message = arguments[0]
+      RuntimeException.call(this, message)
+    }
+  }
+  static interfaces_ () {
+    return []
+  }
+  static getClass () {
+    return AssertionFailedException
+  }
 };
